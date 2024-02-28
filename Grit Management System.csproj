@@ -170,6 +170,7 @@
     <Content Include="assets\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="assets\js\plugins\world.js" />
     <Content Include="dashboard.aspx" />
+    <Content Include="gritters.aspx" />
     <Content Include="login.aspx" />
     <Content Include="sign_up.aspx" />
     <Content Include="Web.config" />
@@ -181,6 +182,13 @@
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gritters.aspx.cs">
+      <DependentUpon>gritters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gritters.aspx.designer.cs">
+      <DependentUpon>gritters.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
