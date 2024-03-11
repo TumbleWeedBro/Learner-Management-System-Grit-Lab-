@@ -59,5 +59,5 @@
       </div>
     </section>
   </main>
-      </script>
+
 </asp:Content>
