@@ -256,7 +256,7 @@
       data: {
         labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",],
         datasets: [{
-          label: "Sales",
+          label: "Lab Completion",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -421,7 +421,7 @@
       data: {
           labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",],
         datasets: [{
-          label: "Mobile apps",
+          label: "Tasks",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,

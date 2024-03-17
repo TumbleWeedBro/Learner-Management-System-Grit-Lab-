@@ -18,34 +18,51 @@
                   <p class="mb-0">Enter your details to request to join JBS</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form id="form" runat="server" method="post" class="container-fluid">
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Name</label>
-                      <input type="text" class="form-control">
+                        <asp:TextBox runat="server" type="text" ID="txtname"  class="form-control"  ></asp:TextBox> 
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Surname</label>
+                        <asp:TextBox runat="server" type="text" ID="txtsurname"  class="form-control" ></asp:TextBox> 
                     </div>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Email</label>
-                      <input type="email" class="form-control">
+                        <asp:TextBox runat="server" type="email" ID="txtemail"  class="form-control" ></asp:TextBox>
                     </div>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Student Number </label>
-                      <input type="text" class="form-control">
+                        <asp:TextBox runat="server" type="text" ID="txtstudentNumber"  class="form-control"></asp:TextBox>
+                      
                     </div>
-                        <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Course Average</label>
-                      <input type="text" class="form-control">
-                    </div>
-
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">JBS-CODE</label>
-                      <input type="text" class="form-control">
+                      <label class="form-label">Uni Year</label>
+                        <asp:TextBox runat="server" type="text" ID="txtuni_year"  class="form-control" ></asp:TextBox>
+                      
                     </div>
-                         <div class="input-group input-group-outline mb-3">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                        </div>
+                        <asp:DropDownList runat="server" ID="ddlCourse" CssClass="form-control" ClientIDMode="Static" OnSelectedIndexChanged="ddlCourse_SelectedIndexChanged">
+                            <asp:ListItem Text="Select Course" Value="Select Course" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Comp Sci" Value="Comp Sci"></asp:ListItem>
+                            <asp:ListItem Text="Info Systems" Value="Info Systems"></asp:ListItem>
+                            <asp:ListItem Text="Humanities" Value="Humanities"></asp:ListItem>
+                            <asp:ListItem Text="Business" Value="Business"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Course Average</label>
+                      <asp:TextBox runat="server" type="text" ID="txtCourseAverage"  class="form-control" ></asp:TextBox>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Motivation to Join JBS</label>
-                      <input type="text" class="form-control">
+                        <asp:TextBox runat="server" type="text" ID="txtmotivation"  class="form-control"></asp:TextBox>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Request</button>
+                       <asp:Button  runat="server" Text="Request" type="submit" OnClick="btnrequest_Click" class="btn bg-gradient-primary w-100 my-4 mb-2" ID="btnrequest" />
                     </div>
                   </form>
                 </div>

@@ -98,10 +98,11 @@
                     <ul class="list-group">
                         <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                             <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Name: </h6>
-                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Surname: </h6>
-                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Course: </h6>                       
-                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Year: </h6>                       
+                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Name: <%=name %></h6>
+                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Surname: <%= surname %></h6>
+                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Student Number: <%= studentNumber %> </h6>                       
+                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Course: <%= Course %> </h6>                       
+                            <h6 class="mb-1 text-dark font-weight-bold text-sm">Year: <%= year %></h6>                       
                             </div>
                         </li>
                     </ul>
