@@ -2,9 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<<<<<<< Updated upstream
 
  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+=======
+        <form id="form1" runat="server">
+     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+>>>>>>> Stashed changes
     <div class="container-fluid py-4">
+
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
@@ -13,6 +19,7 @@
                 <h6 class="text-white text-capitalize ps-3">Gritters table</h6>
               </div>
             </div>
+<<<<<<< Updated upstream
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
@@ -104,6 +111,82 @@
                       <td class="align-middle text-center text-sm">
                         <span class="text-xs font-weight-bold"> Delete </span>
                       </td>
+=======
+              <div class="table-responsive" style="padding-left:8vh;">
+
+      
+                <div class="row">
+                    <div class="col">
+                        <asp:GridView ID="GridView1" runat="server" class="table align-items-center mb-0" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="222px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="gritters_id">
+                            <Columns>
+                                <asp:BoundField DataField="gritters_id" HeaderText="gritters_id" SortExpression="gritters_id" InsertVisible="False" ReadOnly="True" />
+                                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+                                <asp:BoundField DataField="surname" HeaderText="surname" SortExpression="surname" />
+                                <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+                                <asp:BoundField DataField="account_status" HeaderText="account_status" SortExpression="account_status" />
+                                <asp:BoundField DataField="account_status" HeaderText="account_status" SortExpression="account_status" />
+                            </Columns>
+                        </asp:GridView>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Grit_Management_DBConnectionString %>" SelectCommand="SELECT [gritters_id], [name], [surname], [email], [account_status] FROM [grituser] WHERE ([account_status] NOT LIKE '%' + @account_status + '%')">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="pending" Name="account_status" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                    </div>
+                </div>
+                
+                </div>      
+             </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Request table</h6>
+              </div>
+            </div>
+              <div class="table-responsive" style="padding-left:8vh;">
+
+                  
+                <div class="row">
+                    <div class="col">
+                        <asp:GridView ID="GridView2" runat="server" class="table align-items-center mb-0" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="222px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="gritters_id">
+                            <Columns>     
+                                <asp:BoundField DataField="gritters_id" HeaderText="gritters_id" SortExpression="gritters_id" InsertVisible="False" ReadOnly="True" />
+                                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+                                <asp:BoundField DataField="surname" HeaderText="surname" SortExpression="surname" />
+                                <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+                                <asp:BoundField DataField="account_status" HeaderText="account_status" SortExpression="account_status" />
+                                 <asp:TemplateField HeaderText="Actions">
+                                <ItemTemplate>
+                                    <asp:Button runat="server" class="btn btn-success btn-md" style="padding-left: 0.5rem; padding-right: 0.5rem;" Text="Activate" OnClick="btnActivate_Click"/>
+                                    <asp:Button runat="server" class="btn btn-warning btn-md" style="padding-left: 0.5rem; padding-right: 0.5rem;" Text="Suspend" OnClick="btnSuspend_Click"/>
+                                    <asp:Button runat="server" class="btn btn-danger btn-md" style="padding-left: 0.5rem; padding-right: 0.5rem;" Text="Delete" OnClick="btnDelete_Click"/>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Grit_Management_DBConnectionString %>" SelectCommand="SELECT [gritters_id], [name], [surname], [email], [account_status] FROM [grituser] WHERE ([account_status] = @account_status)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="pending" Name="account_status" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                    </div>
+                </div>
+         
+                </div>      
+             </div>
+          </div>
+        </div>
+      </div>
+</main>
+</form>
+>>>>>>> Stashed changes
 
                       <td class="align-middle text-center text-sm">
                         <span class="text-xs font-weight-bold"> $14,000 </span>
