@@ -4,70 +4,62 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-          <div class="row">
+    <div class="row">
+        <form id="form" runat="server" method="post" class="container-fluid">
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="card card-plain">
+                <div class="card-header">
+                  <h4 class="font-weight-bolder">Upload form</h4>
+                  <p class="mb-0">Enter your details to request to join JBS</p>
+                </div>
+                <div class="card-body">
+                 
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Video Name</label>
+                        <asp:TextBox runat="server" type="text" ID="txtVideo_name"  class="form-control" OnTextChanged="txtVideo_name_TextChanged"  ></asp:TextBox> 
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Lab link</label>
+                        <asp:TextBox runat="server" type="text" ID="txtLab_link"  class="form-control" OnTextChanged="txtLab_link_TextChanged"></asp:TextBox> 
+                    </div>
+                  
+                    <div class="text-center">
+                       <asp:Button  runat="server" Text="Submit" type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" ID="btnSubmit" OnClick="btnSubmit_Click" />
+                    </div>
+                 
+                </div>
+
+              </div>
               <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Video table</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                 <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Video</th>              
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>              
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lab links</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <%--table data--%>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera-reels" viewBox="0 0 16 16">
-                              <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0M1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/>
-                              <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm6 8.73V7.27l-3.5 1.555v4.35zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1"/>
-                              <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6M7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-                            </svg>
-                          </div>
-                          <iv class="d-flex flex-column justify-content-center"/>
-                            <h6 class="mb-0 text-sm" style="margin-left:2vh; margin-top:0.5vh;">Video Name</h6>
-                          </div>
-                      </td>
+                 
+                           <asp:GridView ID="GridView1" runat="server" class="table align-items-center mb-0" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="222px" DataKeyNames="id">
+                               <Columns>
+                                   <asp:BoundField DataField="video_name" HeaderText="video_name" SortExpression="video_name" />
+                                   <asp:BoundField DataField="lab_link" HeaderText="lab_link" SortExpression="lab_link" />
+                                   <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                              <asp:TemplateField HeaderText="Actions">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnDelete" OnClick="btnDelete_Click" runat="server" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                               </Columns>
 
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> Delete </span>
-                      </td>
+                         </asp:GridView>
+                           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Grit_Management_DBConnectionString %>" SelectCommand="SELECT [video_name], [lab_link], [id] FROM [videos]"></asp:SqlDataSource>
+                  </>
 
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $14,000 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage" style="margin-left:20vh;">
-                              <span class="text-xs font-weight-bold">60%</span>
-                            </div>
-                          </div>
-                          <div class="progress" style="margin-left:20vh;">
-                              <%--w-0 control progress bar--%>
-                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>                        
-                  </tbody>
-                </table>
               </div>
                <%--end of table--%>
               </div>
             </div>
           </div>
+         </form>
        </div>
 </asp:Content>

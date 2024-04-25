@@ -145,14 +145,41 @@
               <div class="timeline timeline-one-side">
                 <div class="timeline-block mb-3">
                   <span class="timeline-step">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-                      <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-                      <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"/>
-                    </svg>
+     
                   </span>
+                <form id="myForm" runat="server" onsubmit="return false;"> <!-- Add onsubmit="return false;" to prevent default form submission -->
+                    <asp:DropDownList ID="ddlWeeks" runat="server" OnSelectedIndexChanged="ddlWeeks_SelectedIndexChanged" onchange="submitForm()" style="margin-left:3vh;">
+                        <asp:ListItem Text="Week 1" Value="1" />
+                        <asp:ListItem Text="Week 2" Value="2" />
+                        <asp:ListItem Text="Week 3" Value="3" />
+                        <asp:ListItem Text="Week 4" Value="4" />
+                        <asp:ListItem Text="Week 5" Value="5" />
+                        <asp:ListItem Text="Week 6" Value="6" />
+                        <asp:ListItem Text="Week 7" Value="7" />
+                        <asp:ListItem Text="Week 8" Value="8" />
+                        <asp:ListItem Text="Week 9" Value="9" />
+                        <asp:ListItem Text="Week 10" Value="10" />
+                        <asp:ListItem Text="Week 11" Value="11" />
+                        <asp:ListItem Text="Week 12" Value="12" />
+                        <asp:ListItem Text="Week 13" Value="13" />
+                    </asp:DropDownList>
+                </form>
+
+                <script type="text/javascript">
+                    var selectedValue; 
+
+                    function storeSelectedValue() {
+                        selectedValue = document.getElementById('<%= ddlWeeks.ClientID %>').value; 
+    }
+
+                    function submitForm() {
+                        document.forms["myForm"].submit(); // Submit the form named "myForm"
+                    }
+                </script>
+
                   <div class="timeline-content">
-                    <h6 class="text-dark text-sm font-weight-bold mb-0">Admin Name</h6>
-                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Online status: </p>
+
+
                   </div>
                 </div>
              </div>
@@ -249,6 +276,7 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
@@ -262,7 +290,20 @@
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 20, 10, 22, 50, 10, 40],
+            data: [
+                <%=labs_week1%>,
+                <%=labs_week2%>,
+                <%=labs_week3%>,
+                <%=labs_week4%>,
+                <%=labs_week5%>,
+                <%=labs_week6%>,
+                <%=labs_week7%>,
+                <%=labs_week8%>,
+                <%=labs_week9%>,
+                <%=labs_week10%>,
+                <%=labs_week11%>,
+                <%=labs_week12%>,
+                <%=labs_week13%>],
           maxBarThickness: 6
         }, ],
       },
@@ -336,23 +377,35 @@
       type: "line",
       data: {
           labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",],
-        datasets: [{
-          label: "Attendance",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          //store it in a variable and then display them. Store all 13?????
-          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-          maxBarThickness: 6
-
-        }],
+          datasets: [{
+              label: "Attendance",
+              tension: 0,
+              borderWidth: 0,
+              pointRadius: 5,
+              pointBackgroundColor: "rgba(255, 255, 255, .8)",
+              pointBorderColor: "transparent",
+              borderColor: "rgba(255, 255, 255, .8)",
+              borderColor: "rgba(255, 255, 255, .8)",
+              borderWidth: 4,
+              backgroundColor: "transparent",
+              fill: true,
+              //store it in a variable and then display them. Store all 13?????
+              data: [
+                <%=attendance_week1%>,
+                <%=attendance_week2%>,
+                <%=attendance_week3%>,
+                <%=attendance_week4%>,
+                <%=attendance_week5%>,
+                <%=attendance_week6%>,
+                <%=attendance_week7%>,
+                <%=attendance_week8%>,
+                <%=attendance_week9%>,
+                <%=attendance_week10%>,
+                <%=attendance_week11%>,
+                <%=attendance_week12%>,
+                <%=attendance_week13%>],
+              maxBarThickness: 6
+          },],
       },
       options: {
         responsive: true,

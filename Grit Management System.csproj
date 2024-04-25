@@ -103,6 +103,7 @@
     <Content Include="assets\img\illustrations\lock.png" />
     <Content Include="assets\img\illustrations\pattern-tree.svg" />
     <Content Include="assets\img\illustrations\rocket-white.png" />
+    <Content Include="assets\img\illustrations\vecteezy_book-and-studen-logo-vector_6552415.jpg" />
     <Content Include="assets\img\ivana-square.jpg" />
     <Content Include="assets\img\ivana-squares.jpg" />
     <Content Include="assets\img\ivancik.jpg" />
@@ -115,6 +116,7 @@
     <Content Include="assets\img\logos\gray-logos\logo-pinterest.svg" />
     <Content Include="assets\img\logos\gray-logos\logo-spotify.svg" />
     <Content Include="assets\img\logos\gray-logos\logo-vodafone.svg" />
+    <Content Include="assets\img\logos\grit_lab_logo.png" />
     <Content Include="assets\img\logos\mastercard.png" />
     <Content Include="assets\img\logos\visa.png" />
     <Content Include="assets\img\marie.jpg" />

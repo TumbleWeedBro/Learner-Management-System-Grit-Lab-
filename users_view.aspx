@@ -13,12 +13,12 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Grit Session</p>
-                <h4 class="mb-0">1</h4>
+                <h4 class="mb-0"><%=grit_session %></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span>JBS-CODE:</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span>JBS-CODE:<%=jbs_code %></p>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Labs Completed</p>
-                <h4 class="mb-0">3/13</h4>
+                <h4 class="mb-0"><%=labs_completed %>/13</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -48,7 +48,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Lab Attendence</p>
-                <h4 class="mb-0">2/13 </h4>
+                <h4 class="mb-0"><%=lab_attendance %>/13 </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -69,9 +69,7 @@
               </div>
             </div>
             <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0">Status: <span class="text-danger text-sm font-weight-bolder">Certificate</span></p>
-            </div>
+
           </div>
         </div>
 

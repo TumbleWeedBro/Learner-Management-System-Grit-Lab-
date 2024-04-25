@@ -11,8 +11,17 @@ namespace Grit_Management_System
 {
 
 
-    public partial class sign_up
+    public partial class sign_up1
     {
+
+        /// <summary>
+        /// pagestyle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink pagestyle;
 
         /// <summary>
         /// form control.
@@ -94,6 +103,15 @@ namespace Grit_Management_System
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtmotivation;
+
+        /// <summary>
+        /// txtpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpassword;
 
         /// <summary>
         /// btnrequest control.

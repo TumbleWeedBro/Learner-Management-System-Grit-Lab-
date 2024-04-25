@@ -1,46 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Grit_Management_System
 {
-    public partial class login : System.Web.UI.Page
+    public partial class login1 : System.Web.UI.Page
     {
+
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
 
-        //Make a password hash
-        string passwordhash(string password)
+        public static string HashPassword(string password)
         {
-            string password_hash = "";
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // ComputeHash - returns byte array
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-            return password_hash;
+                // Convert byte array to a string
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2")); // "x2" formats to hexadecimal
+                }
+                return builder.ToString();
+            }
         }
-
+       
         protected void btnlogin_Click(object sender, EventArgs e)
         {
+            string password = txtpassword.Text.Trim();
+            string email = txtemail.Text.Trim();
             try
             {
                 using (SqlConnection con = new SqlConnection(strcon))
                 {
                     con.Open();
                     SqlCommand cmd = new SqlCommand(
-                        "SELECT * FROM users " +
+                        "SELECT * FROM grituser " +
                         "WHERE " +
-                        "email = @email AND password_hash = password_hash AND account_status = 'admin' " +
+                        "email = @email AND password = @password_hash AND account_status = 'admin'" +
                         "UNION " +
-                        "SELECT * FROM users " +
+                        "SELECT * FROM grituser " +
                         "WHERE " +
-                        "email = @email AND password_hash = password_hash AND account_status = 'active';"
+                        "email = @email AND password = @password_hash AND account_status = 'active';"
                         , con);
 
-                    cmd.Parameters.AddWithValue("@email", email.Text.Trim());
-                    cmd.Parameters.AddWithValue("@password_hash", password.Text.Trim());
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@password_hash", password);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -48,26 +61,26 @@ namespace Grit_Management_System
                         {
                             while (reader.Read())
                             {
-                                Session["UserId"] = reader["id"];
+                                Session["UserId"] = reader["gritters_id"];
                                 Session["status"] = reader["account_status"];
                                 string accountStatus = reader["account_status"].ToString();
                                 if (accountStatus == "active")
                                 {
                                     Response.Write("<script>alert('Login Successful');</script>");
-                                    Response.Redirect("/views/home/bank.aspx");
+                                    Response.Redirect("dashboard.aspx");
                                 }
                                 else if (accountStatus == "admin")
                                 {
-                                    Session["UserId"] = reader["id"];
+                                    Session["UserId"] = reader["gritters_id"];
                                     Response.Write("<script>alert('Login Successful');</script>");
-                                    Response.Redirect("/views/admin/dashboard.aspx");
+                                    Response.Redirect("dashboard.aspx");
                                 }
                             }
                         }
                         else
                         {
                             Response.Write("<script>alert('Login unsuccessful');</script>");
-                            Response.Redirect("/views/logging/login.aspx");
+                            Response.Redirect("login.aspx");
                         }
                     }
                 }
@@ -86,15 +99,15 @@ namespace Grit_Management_System
 
         }
 
+        protected void txtpassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         protected void email_TextChanged(object sender, EventArgs e)
         {
 
         }
+    }  
 
-        protected void password_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-    }
 }
