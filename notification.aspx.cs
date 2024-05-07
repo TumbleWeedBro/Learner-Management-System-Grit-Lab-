@@ -78,6 +78,67 @@ namespace Grit_Management_System
             DeleteRecordFromDatabase(idToDelete);
 
         }
+
+
+        string GenerateRandomString()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+            Random random = new Random();
+            return new string(Enumerable.Repeat(chars, 7)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        protected void btnAttendance_Click(object sender, EventArgs e)
+        {
+            string random_code = GenerateRandomString();
+            txtattendance.Text = random_code;
+            SqlConnection con = new SqlConnection(strcon);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE attendance " +
+                "SET code = @Code " +
+                " WHERE id = 1", con);
+            cmd.Parameters.AddWithValue("@Code", random_code);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+
+        protected void btnSubAttendance_Click(object sender, EventArgs e)
+        {
+            bool attendance_bool = false;
+            string attendance_code = txtSubAttendance.Text.Trim();
+            SqlConnection con = new SqlConnection(strcon);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT 1 FROM attendance " +
+              "WHERE code = @attendance_code ", con);
+            cmd.Parameters.AddWithValue("@attendance_code", attendance_code);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                   attendance_bool = true;
+                }
+            }
+            if (attendance_bool)
+            {
+                using (SqlCommand updateCmd = new SqlCommand("UPDATE grituser SET lab_attendance = lab_attendance + 1 WHERE gritters_id = @UserId", con))
+                {
+                    updateCmd.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Lab attendance updated successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Lab attendance update failed.");
+                    }
+                }
+
+            }
+
+
+        }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
         }
@@ -91,5 +152,16 @@ namespace Grit_Management_System
         {
 
         }
+
+        protected void txtattendance_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtSubAttendance_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

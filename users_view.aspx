@@ -30,7 +30,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Labs Completed</p>
-                <h4 class="mb-0"><%=labs_completed %>/13</h4>
+                <h4 class="mb-0"><%= labs_completed %></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">

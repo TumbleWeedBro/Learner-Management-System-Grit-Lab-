@@ -67,7 +67,7 @@ namespace Grit_Management_System
                                 if (accountStatus == "active")
                                 {
                                     Response.Write("<script>alert('Login Successful');</script>");
-                                    Response.Redirect("dashboard.aspx");
+                                    Response.Redirect("users_view.aspx");
                                 }
                                 else if (accountStatus == "admin")
                                 {

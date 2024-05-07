@@ -6,6 +6,29 @@
     <form id="form1" runat="server">
      <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+           <div class="card mt-4">
+            <div class="card-header p-3">
+              <h5 class="mb-0">Attendance code</h5>
+            </div>
+            <div class="card-body p-3 pb-0">
+            <asp:TextBox runat="server" type="text" ID="txtSubAttendance"  class="form-control" OnTextChanged="txtSubAttendance_TextChanged" ></asp:TextBox> 
+            
+            </div>
+
+        <asp:Button  runat="server" Text="Submit Attendance" type="button" class="btn bg-gradient-warning w-100 my-4 mb-2" ID="btnSubAttendance" OnClick="btnSubAttendance_Click" />
+          </div>
+        <div class="card mt-4">
+            <div class="card-header p-3">
+              <h5 class="mb-0">Attendance code</h5>
+            </div>
+            <div class="card-body p-3 pb-0">
+            <asp:TextBox runat="server" type="text" ID="txtattendance"  class="form-control" OnTextChanged="txtattendance_TextChanged" ></asp:TextBox> 
+            
+            </div>
+
+        <asp:Button  runat="server" Text="Make attendance" type="button" class="btn bg-gradient-warning w-100 my-4 mb-2" ID="Button1" OnClick="btnAttendance_Click" />
+          </div>
+
           <div class="card mt-4">
             <div class="card-header p-3">
               <h5 class="mb-0">Write notification</h5>

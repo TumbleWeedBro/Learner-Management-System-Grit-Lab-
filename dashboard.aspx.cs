@@ -43,13 +43,10 @@ namespace Grit_Management_System
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int[] myarray = new int[13];
 
             if (!IsPostBack && Session["status"].ToString() == "admin")
             {
-                // Check if the "gritters_id" parameter is present in the query string
-                if (Request.QueryString["gritters_id"] != null)
-                {
-
                     // Get the "gritters_id" value from the query string
                     int grittersId = Convert.ToInt32(Request.QueryString["gritters_id"]);
                     Response.Write("<script>alert('Gritters ID: " + grittersId + "');</script>");
@@ -85,32 +82,37 @@ namespace Grit_Management_System
                                 }
                             }
                             cmd = new SqlCommand(
-                            "SELECT * FROM labs_completed ", con);
-                            cmd.Parameters.AddWithValue("@grittersId", grittersId);
-                            using (SqlDataReader read = cmd.ExecuteReader())
+                            "SELECT * FROM lab_marks WHERE week = @week ", con);
+                            for (int i=1; i <= 13; i++)
                             {
-                                if (read.HasRows)
+                                cmd.Parameters.AddWithValue("@week", i);
+                                using (SqlDataReader read = cmd.ExecuteReader())
                                 {
-                                    while (read.Read())
+                                    if (read.HasRows)
                                     {
-                                        labs_week1 = int.Parse(read["week1"].ToString());
-                                        labs_week2 = int.Parse(read["week2"].ToString());
-                                        labs_week3 = int.Parse(read["week3"].ToString());
-                                        labs_week4 = int.Parse(read["week4"].ToString());
-                                        labs_week5 = int.Parse(read["week5"].ToString());
-                                        labs_week6 = int.Parse(read["week7"].ToString());
-                                        labs_week8 = int.Parse(read["week8"].ToString());
-                                        labs_week9 = int.Parse(read["week9"].ToString());
-                                        labs_week10 = int.Parse(read["week10"].ToString());
-                                        labs_week11 = int.Parse(read["week11"].ToString());
-                                        labs_week12 = int.Parse(read["week12"].ToString());
-                                        labs_week13 = int.Parse(read["week13"].ToString());
-
-
+                                        while (read.Read())
+                                        {
+                                            myarray[i] += int.Parse(read["week"].ToString());
+                                        }
                                     }
-                                }
 
+                                }
                             }
+                            labs_week1 = myarray[1];
+                            labs_week2 = myarray[2];
+                            labs_week3 = myarray[3];
+                            labs_week3 = myarray[4];
+                            labs_week4 = myarray[5];
+                            labs_week5 = myarray[6];
+                            labs_week6 = myarray[7];
+                            labs_week8 = myarray[8];
+                            labs_week9 = myarray[9];
+                            labs_week10 = myarray[10];
+                            labs_week11 = myarray[11];
+                            labs_week12 = myarray[12];
+                            labs_week13 = myarray[13];
+
+
                             Response.Redirect("dashboard.aspx");
                         }
 
@@ -122,13 +124,7 @@ namespace Grit_Management_System
 
                     }
                 }
-
-
-            }
-            else
-            {
-                Response.Redirect("login.aspx");
-            }
+         
         }
 
         protected void ddlWeeks_SelectedIndexChanged(object sender, EventArgs e)
